@@ -1,0 +1,18 @@
+name : verif pre push
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check tools
+      uses: uv run pre-commit run -a
+      with:
+        version: "0.13.6"
+    - name: Check tests
+      uses: uv run python -m unittest
+      with:
+        version: "0.13.6"
